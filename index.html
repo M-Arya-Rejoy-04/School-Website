@@ -152,7 +152,7 @@
 
       <!-- 28) Hero image: replace with a good photo of your school -->
       <div>
-        <img src="C:\Users\ARYA REJOY\Downloads\school.jpeg" alt="School building" style="width:100%;border-radius:10px;box-shadow:0 8px 24px rgba(2,6,23,0.08)">
+        <img src="images/school.jpeg" alt="School building"> style="width:100%;border-radius:10px;box-shadow:0 8px 24px rgba(2,6,23,0.08)">
       </div>
     </section>
 
@@ -244,5 +244,38 @@
     </footer>
   </main>
 
-  <!-- 38) JavaScript: menu toggle, galler
+  <!-- 38) JavaScript: menu toggle, gallery modal, contact mailto, dynamic year -->
+  <script>
+  // menu toggle for mobile
+  const menuBtn = document.getElementById("menuToggle");
+  const nav = document.querySelector("nav");
+  menuBtn.addEventListener("click", () => {
+    nav.style.display = nav.style.display === "flex" ? "none" : "flex";
+  });
+
+  // gallery modal
+  const modal = document.getElementById("modal");
+  const modalImg = document.getElementById("modalImg");
+  document.querySelectorAll(".gallery img").forEach(img => {
+    img.addEventListener("click", () => {
+      modal.classList.add("open");
+      modalImg.src = img.dataset.full;
+    });
+  });
+  modal.addEventListener("click", () => modal.classList.remove("open"));
+
+  // update year in footer
+  document.getElementById("year").textContent = new Date().getFullYear();
+
+  // contact form (mailto fallback)
+  function submitContact(e){
+    e.preventDefault();
+    const name = document.getElementById("name").value;
+    const email = document.getElementById("email").value;
+    const message = document.getElementById("message").value;
+    window.location.href = `mailto:info@stjosephsschool.edu?subject=Message from ${name}&body=${encodeURIComponent(message)}%0A%0AFrom: ${name} (${email})`;
+  }
+</script>
+</body>
+</html>
 
